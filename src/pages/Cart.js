@@ -1,20 +1,18 @@
 import { CartCard } from "../Components"
 import { useTitle } from "../Hooks/useTitle"
+import { useCart } from "../context/CartContext";
 
 export const Cart = () => {
-
+ const { total , cartList} = useCart();
   useTitle("Cart");
 
-  const products = [
-    {'id':1 , "name":"iphone16pro", "price":112000 , "image": "/assets/images/iphone16pro.jpeg" },
-    {'id':2, "name":"iphone16", "price":99000 , "image": "/assets/images/iphone16.jpeg" },
-  ]
+ 
 
   return (
     <main>
-      <section className="cart">
-        <h1> Cart Items: {products.length} </h1>
-        {products.map((product) => (
+      <section className="cart">  
+        <h1> Cart Items: {cartList.length}/ Rs:{ total } </h1>
+        {cartList.map((product) => (
           <CartCard key={product.id} product={product}/>
         ))}
       
